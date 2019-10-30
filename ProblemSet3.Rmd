@@ -1,0 +1,1168 @@
+---
+title: "Problem Set 3"
+subtitle: "MATH E-158: Introduction to Bayesian Inference"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+
+
+
+
+\section*{Problem 1}
+
+This problem tests your understanding of mixtures of binomial distributions.
+
+\subsection*{Problem Statement}
+
+There are three ancient classical Greek urns:
+\begin{itemize}
+	\item Urn 1 contains 2 red balls, and 6 white balls.
+	\item Urn 2 contains 9 red balls, and 11 white balls.
+	\item Urn 3 contains 12 red balls, and 4 white balls.
+\end{itemize}
+Ashley rolls a die. If it comes up a 1 or a 2, then she samples from Urn 1. If the die is a 3, then she samples from Urn 2. If the die is a 4, 5, or a 6, then she samples from Urn 3.
+$$
+\begin{tabular}{ccccc}
+& Die & & Urn \\
+\hline
+& 1 or 2 & & Urn 1\\
+& 3 & & Urn 2\\
+& 4, 5, or 6 & & Urn 3\\
+\hline
+\end{tabular}
+$$
+Ashley draws 5 balls from the selected urn with replacement. The experimental outcome is the number of red balls observed.
+
+\subsubsection*{Part (a)}
+
+Define these six variables:
+\begin{itemize}
+    \item The variable `urn.1.probability` should be initialized to the probability that Ashley selects the first ball.
+    \item The variable `urn.2.probability` should be initialized to the probability that Ashley selects the second ball.
+    \item The variable `urn.3.probability` should be initialized to the probability that Ashley selects the third ball.
+    \item The variable `urn.1.red.ball.probability` should be initialized to the conditional probability that Ashley observes a red ball, given that she has selected the first urn.
+    \item The variable `urn.2.red.ball.probability` should be initialized to the conditional probability that Ashley observes a red ball, given that she has selected the second urn.
+    \item The variable `ball.3.red.ball.probability` should be initialized to the conditional probability that Ashley observes a red ball, given that she has selected the third urn.
+\end{itemize}
+
+
+\subsubsection*{Part (b)}
+
+What is the unconditional probability that Ashley observes 3 red balls?
+
+
+\subsubsection*{Part (c)}
+
+What is the unconditional expected number of red balls observed?
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly select one of the urns, using the probabilities specified in the problem statement.
+        \item Next, once the particular urn has been determined, sample from the appropriate binomial distribution to obtain the number of red balls that Ashley observes in this iteration.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection*{Part (e)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional probability that Ashley observes 3 red balls.
+
+
+\subsubsection*{Part (f)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional expected number of red balls that Ashley observes.
+
+
+\subsection*{Problem Solution}
+
+\subsubsection*{Part (a)}
+
+Define these six variables:
+\begin{itemize}
+    \item The variable `urn.1.probability` should be initialized to the probability that Ashley selects the first ball.
+    \item The variable `urn.2.probability` should be initialized to the probability that Ashley selects the second ball.
+    \item The variable `urn.3.probability` should be initialized to the probability that Ashley selects the third ball.
+    \item The variable `urn.1.red.ball.probability` should be initialized to the conditional probability that Ashley observes a red ball, given that she has selected the first urn.
+    \item The variable `urn.2.red.ball.probability` should be initialized to the conditional probability that Ashley observes a red ball, given that she has selected the second urn.
+    \item The variable `ball.3.red.ball.probability` should be initialized to the conditional probability that Ashley observes a red ball, given that she has selected the third urn.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+
+
+\subsubsection*{Part (b)}
+
+What is the unconditional probability that Ashley observes 3 red balls?
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+\subsubsection*{Part (c)}
+
+What is the unconditional expected number of red balls observed?
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (b) and (c). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly select one of the urns, using the probabilities specified in the problem statement.
+        \item Next, once the particular urn has been determined, sample from the appropriate binomial distribution to obtain the number of red balls that Ashley observes in this iteration.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+\subsubsection*{Part (e)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional probability that Ashley observes 3 red balls.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+\subsubsection*{Part (f)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional expected number of red balls that Ashley observes.
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+\newpage
+
+End of Problem 1
+
+\newpage
+
+
+\section*{Problem 2}
+
+This problem tests your understanding of the Poisson distribution.
+
+\subsection*{Problem Statement}
+
+The number of touchdown passes in a game by Tom Gravy, star quarterback for the New England Clam Chowder, follows a Poisson distribution. The Poisson distribution parameter $\mu$ depends on the weather:
+\begin{itemize}
+	\item If it's sunny, the Poisson distribution has parameter $\mu = 4.1$.
+	\item If it's cloudy, the Poisson distribution has parameter $\mu = 2.7$.
+	\item If it's rainy, the Poisson distribution has parameter $\mu = 1.3$.
+\end{itemize}
+The weather is sunny for 50\% of games, cloudy for 35\% of games, and rainy for 15\% of games.
+
+
+
+\subsubsection*{Part (a)}
+
+Define three variables:
+\begin{itemize}
+    \item The variable `sunny.probability` should be initialized to the probability that the weather on game day is sunny.
+    \item The variable `cloudy.probability` should be initialized to the probability that the weather on game day is cloudy.
+    \item The variable `rainy.probability` should be initialized to the probability that the weather on game day is rainy.
+\end{itemize}
+
+
+
+\subsubsection*{Part (b)}
+
+Calculate the unconditional probability of Tom Gravy throwing exactly 2 touchdown passes in a game i.e.\ $\Pr(X = 2)$.
+
+
+\subsubsection*{Part (c)}
+
+Calculate the unconditional expected number of touchdown passes in a game i.e.\  $\hbox{E}[ X ]$.
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly sample from the weather conditions `sunny`, `cloudy`, and `rainy`.
+        \item Next, once the weather condition has been determined, sample from the appropriate Poisson distribution to obtain Tom Gravy's number of touchdown passes for this iteration.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection*{Part (e)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional probability that Tom Gravy will throw exactly 2 touchdown passes. Report this value using a `cat()` statement, and compare it with the value you calculated in part (b).
+
+
+\subsubsection*{Part (f)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional expected value of the number of touchdown passes that Tom Gravy throws.
+
+
+
+
+\newpage
+\subsection*{Problem Solution}
+
+\subsubsection*{Part (a)}
+
+Define three variables:
+\begin{itemize}
+    \item The variable `sunny.probability` should be initialized to the probability that the weather on game day is sunny.
+    \item The variable `cloudy.probability` should be initialized to the probability that the weather on game day is cloudy.
+    \item The variable `rainy.probability` should be initialized to the probability that the weather on game day is rainy.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+\subsubsection*{Part (b)}
+
+Calculate the unconditional probability of Tom Gravy throwing exactly 2 touchdown passes in a game i.e.\ $\Pr(X = 2)$.
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+
+
+
+
+
+\subsubsection*{Part (c)}
+
+Calculate the unconditional expected number of touchdown passes in a game i.e.\  $\hbox{E}[ X ]$.
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly sample from the weather conditions `sunny`, `cloudy`, and `rainy`.
+        \item Next, once the weather condition has been determined, sample from the appropriate Poisson distribution to obtain Tom Gravy's number of touchdown passes for this iteration.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+\subsubsection*{Part (e)}
+
+Use logical filtering to estimate the unconditional probability that Tom Gravy throws 2 touchdown passes. Report your final answer with a `cat()` statement.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (f)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional expected value of the number of touchdown passes that Tom Gravy throws.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\newpage
+
+End of Problem 2
+
+\newpage
+
+
+
+
+
+\newpage
+\section*{Problem 3}
+
+This problem tests your understanding of mixtures of discrete uniform distributions.
+
+\subsection*{Problem Statement}
+
+Tyrone is sampling numbered balls from 3 ancient classical Greek urns. The first urn contains balls numbered from 1 to 20 in increments of 1. The second urn contains balls numbered 5 to 15 in increments of 1. The third urn contains balls numbered from 8 to 22 in increments of 2. Tyrone rolls a fair die, and if it comes up 1 then he draws one ball at random from the first urn, if it comes up a 2 or a 3 he draws one ball at random from the second urn, and it comes up a 4, a 5, or a 6 he draws one ball at random from the third urn.
+
+\subsubsection*{Part (a)}
+
+To fully specify all the input values for this problem would require 12 variables, and it actually might make the problem even more complicated. So I'm going to suggest that you specify just the mixture weight probabilities.
+
+Define 3 variables:
+\begin{itemize}
+    \item The variable `urn.1.probability` should have the probability of Tyrone selecting the first urn.
+    \item The variable `urn.2.probability` should have the probability of Tyrone selecting the second urn.
+    \item The variable `urn.3.probability` should have the probability of Tyrone selecting the third urn.
+    \item The variable 
+\end{itemize}
+
+\subsubsection*{Part (b)}
+
+What is the unconditional probability that Tyrone observes a ball with a number that is at most 12?
+
+
+\subsubsection*{Part (c)}
+
+What is the unconditional expected value of the observed ball? **Hint:**\ Make sure you properly count the number of balls in each urn.
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly select one of the three urns `Urn 1`, `Urn 2`, and `Urn 3`, using the probabilities specified in the problem statement.
+        \item Next, once the urn has been randomly selected, draw a random value from the appropriate discrete uniform distribution.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Part (e)}
+
+Use your simulated data from part (d) to verify your calculation of the unconditional cumulative probability in part (b).
+
+
+\subsubsection*{Part (f)}
+
+Use your simulated data from part (d) to verify your calculation of the unconditional expected value in part (c).
+
+
+
+\subsection*{Problem Solution}
+
+\subsubsection*{Part (a)}
+
+Define 3 variables:
+\begin{itemize}
+    \item The variable `urn.1.probability` should have the probability of Tyrone selecting the first urn.
+    \item The variable `urn.2.probability` should have the probability of Tyrone selecting the second urn.
+    \item The variable `urn.3.probability` should have the probability of Tyrone selecting the third urn.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution}
+
+
+
+
+
+\subsubsection*{Part (b)}
+What is the unconditional probability that Tyrone observes a ball with a number that is at most 12?
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+\subsubsection*{Part (c)}
+
+What is the unconditional expected value of the observed ball?
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly select one of the three urns `Urn 1`, `Urn 2`, and `Urn 3`, using the probabilities specified in the problem statement.
+        \item Next, once the urn has been randomly selected, draw a random value from the appropriate discrete uniform distribution.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (e)}
+
+Use your simulated data from part (d) to verify your calculation of the unconditional cumulative probability in part (b).
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (f)}
+
+Use your simulated data from part (d) to verify your calculation of the unconditional expected value in part (c).
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+
+
+
+\newpage
+
+End of Problem 3
+
+\newpage
+
+
+
+\section*{Problem 4}
+
+This problem tests your understanding of the geometric distribution and using the Law of Total Probability to calculate a survival probability.
+
+\subsection*{Problem Background}
+
+Jamey is practicing his three-point shot. He starts by selecting one basketball from among three:
+\begin{itemize}
+    \item Jamey selects Ball 1 with probability 25\%.
+    \item Jamey selects Ball 2 with probability 10\%.
+    \item Jamey selects Ball 3 with probability 65\%.
+\end{itemize}
+
+Once Jamey has selected a basketball, he begins to shoot three-point shots. Each shot is independent of all the others, and each attempt scores with the same probability. However, the specific value of the probability of scoring depends on the particular basketball that Jamey selected:
+\begin{itemize}
+    \item If he selected the first ball, then he will score a three-pointer in 45\% of all his shots.
+    \item If he selected the second ball, then he will score a three-pointer in 38\% of all his shots.
+    \item If he selected the third ball, then he will score a three-pointer in 29\% of all his shots.
+\end{itemize}
+
+
+
+
+
+
+\subsection*{Problem Statement}
+
+\subsubsection*{Part (a)}
+
+Define these six variables:
+\begin{itemize}
+    \item The variable `ball.1.probability` should be initialized to the probability that Jamey selects the first ball.
+    \item The variable `ball.2.probability` should be initialized to the probability that Jamey selects the second ball.
+    \item The variable `ball.3.probability` should be initialized to the probability that Jamey selects the third ball.
+    \item The variable `ball.1.score.probability` should be initialized to the conditional probability that Jamey scores a three-point shot, given that he has selected the first ball.
+    \item The variable `ball.2.score.probability` should be initialized to the conditional probability that Jamey scores a three-point shot, given that he has selected the second ball.
+    \item The variable `ball.3.score.probability` should be initialized to the conditional probability that Jamey scores a three-point shot, given that he has selected the third ball.
+\end{itemize}
+
+
+
+
+\subsubsection*{Part (b)}
+
+What is the unconditional probability that Jamey will score at least 3 three-point shots in a row before missing? (Hint: be very careful how you define a ``success'', and how to define a survival function.)
+
+
+
+
+\subsubsection*{Part (c)}
+
+What is the unconditional expected number of shots that Jamey will make before he misses?
+
+
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly sample from the three balls `Ball1`, `Ball2`, and `Ball3`, using the probabilities specified in the problem statement.
+        \item Next, once the ball has been randomly selected, draw a random variable from the appropriate geometric distribution.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+\subsubsection*{Part (e)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional probability that Jamey will score at least 2 three-point shots before he misses.
+
+
+
+
+\subsubsection*{Part (f)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional expected number of shots that Jamey scores before his first miss.
+
+
+
+
+
+\subsection*{Problem Solution}
+
+\subsubsection*{Part (a)}
+
+Define these six variables:
+\begin{itemize}
+    \item The variable `ball.1.probability` should be initialized to the probability that Jamey selects the first ball.
+    \item The variable `ball.2.probability` should be initialized to the probability that Jamey selects the second ball.
+    \item The variable `ball.3.probability` should be initialized to the probability that Jamey selects the third ball.
+    \item The variable `ball.1.score.probability` should be initialized to the conditional probability that Jamey scores a three-point shot, given that he has selected the first ball.
+    \item The variable `ball.2.score.probability` should be initialized to the conditional probability that Jamey scores a three-point shot, given that he has selected the second ball.
+    \item The variable `ball.3.score.probability` should be initialized to the conditional probability that Jamey scores a three-point shot, given that he has selected the third ball.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+\subsubsection*{Part (b)}
+
+What is the unconditional probability that Jamey will score at least 3 three-point shots in a row before missing? (Hint: be very careful how you define a ``success'', and how to define a survival function.)
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (c)}
+
+What is the unconditional expected number of shots that Jamey will make before he misses?
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (d)}
+
+Now we'll construct a simulation to verify our results from parts (a) and (b). We'll start by drawing a random sample of 10,000 observations from this mixture distribution:
+\begin{itemize}
+    \item First, allocate space for the `outcome.vector`.
+    \item Next, run a `for` loop in order to populate the `outcome.vector`, using the two-stage sampling process:
+    \begin{itemize}
+        \item First, randomly sample from the three balls `Ball1`, `Ball2`, and `Ball3`, using the probabilities specified in the problem statement.
+        \item Next, once the ball has been randomly selected, draw a random variable from the appropriate geometric distribution.
+        \item Store this final random value in the current location of the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+\subsubsection*{Part (e)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional probability that Jamey will score at least 2 three-point shots before he misses.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+\subsubsection*{Part (f)}
+
+Use the simulated values in the `outcome.vector` to estimate the unconditional expected number of shots that Jamey scores before his first miss.
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+
+\newpage
+
+End of Problem 4
+
+\newpage
+
+
+
+
+\section*{Problem 5}
+
+This problem and the next two form an extended sequence, and it's one of my favorites in the course because it shows a fascinating application of the concepts of mixture distributions. The actual math is easy -- it's just simple arithmetic. Instead, the challenge is to understand how the method works, and this can be a little intricate. The final result is quite amazing!
+
+\subsection*{Problem Statement}
+
+In this problem, we will explore a procedure that allows study participants to answer a sensitive question with complete anonymity, yet at the same allows researchers to make a population-level estimation of a proportion.
+
+Suppose we are conducting a study, and would like to ask the participants a question that they might find embarrassing to answer honestly. In 1965, Stanley Warner proposed an ingenious method for allowing subjects to provide data in such a way that researchers could not know the subject's personal answer to the question, and yet were still able to make inferences about the overall population. In this protocol, the potentially embarrassing question is phrased so that the response is either "Yes" or "No". First, the subject is supplied with a piece of paper and a fair coin, and goes into a private room where he or she cannot be observed by any member of the research team. The subject then flips the fair coin, and if the coin comes up Heads, the subject answers the potentially embarrassing question truthfully by writing "Yes" or "No" on the paper. If the fair coin comes up Tails, the subject flips the coin again, and if this second coin flip is a Heads he or she writes "Yes" on the paper, but if this second coin flip is a Tails then he or she writes "No" on the paper. Note that in the case where the first coin flip is a Tails, the subject's response has nothing to do with their answer to the potentially embarrassing question, but instead is entirely determined by the second random coin flip. The subject then returns the paper to the experimenter; all that is recorded on the paper is either "Yes" or "No" with no indication of the results of the coin tosses. Notice that since the experimenter does not know the sequence of coin tosses, it is not possible to determine what a "Yes" or "No" indicates -- it could either be a truthful answer to the embarrassing question, or if could be a purely random event because the first coin flip was a Tails and the second was a Heads. Thus, the experimenter cannot know what the subject's personal answer is to the potentially embarrassing question. However, it turns out that if the research team conducts this procedure many times, it is possible to use this data to estimate the proportion of "Yes" in the population.
+
+\bigskip
+In this problem, we will suppose that a research team conducts a study using this procedure. Their study has an overall sample size of 840 subjects and the researchers observe 380 "Yes" responses.
+
+\bigskip
+{\bf Hint:} It is in your long-term interest to solve this problem using entirely variables. There should be no literal numbers in your code other than the values used to initialize the input variables in part (a).
+
+\subsubsection*{Part (a)}
+
+Define four variables:
+\begin{itemize}
+    \item The variable `sample.size` should contain the overall number of subjects on the study.
+    \item The variable `number.of.yes.responses` should have the number of observed "Yes" responses.
+    \item The variable `probability.heads` should contain the probability of obtaining a Heads when flipping the fair coin.
+    \item The variable `probability.tails` should contain the probability of obtaining a Tails when flipping the fair coin.
+\end{itemize}
+
+
+\subsubsection*{Part (b)}
+
+The researchers want to estimate the number of subjects who observe a Tails on their first coin flip, and they decide to do this by using the expected value. Given the overall sample size of 840 subjects, what is the expected number of subjects who observed a Tails on their first coin flip? Save your result in a variable, and report it using a `cat()` statement.
+
+\subsubsection*{Part (c)}
+
+Next, the researchers again decide to use the expected value to estimate the number of subjects who wrote down a "Yes" because the first coin flip was a Tails, and the second coin flip was a Heads. Given the overall sample size of 840 subjects, what is the expected value of the number of subjects who wrote down a "Yes" because the first coin flip was a Tails, and the second coin flip was a Heads? Save your result in a variable, and report it using a `cat()` statement.
+
+\subsubsection*{Part (d)}
+
+Using the total number of "Yes" responses given in the problem statement and your answer from Part (c), estimate the number of subjects who answered "Yes" to the potentially embarrassing question. Save your result in a variable, and report it using a `cat()` statement.
+
+\subsubsection*{Part (e)}
+
+Given the overall sample size of 840 subjects, what is the expected number of subjects who observed a Heads on their first coin flip, and thus answered the potentially embarrassing question? Use this to estimate of the number of subjects who answered the potentially embarrassing question. Save your result in a variable, and report it using a `cat()` statement.
+
+\subsubsection*{Part (f)}
+
+You now have an estimate from Part (d) of the number of subjects who answered the potentially embarrassing question with "Yes", and from Part (e) of the total number of subjects who answered the potentially embarrassing question. Use these two values to estimate the proportion of the population that will give a "Yes" answer to the potentially embarrassing question. Save your result in a variable, and report it using a `cat()` statement.
+
+
+
+
+\subsection*{Problem Solution}
+
+\subsubsection*{Part (a)}
+
+Define four variables:
+\begin{itemize}
+    \item The variable `sample.size` should contain the overall number of subjects on the study.
+    \item The variable `number.of.yes.responses` should have the number of observed "Yes" responses.
+    \item The variable `probability.heads` should contain the probability of obtaining a Heads when flipping the fair coin.
+    \item The variable `probability.tails` should contain the probability of obtaining a Tails when flipping the fair coin.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (b)}
+
+The researchers want to estimate the number of subjects who observe a Tails on their first coin flip, and they decide to do this by using the expected value. Given the overall sample size of 840 subjects, what is the expected number of subjects who observed a Tails on their first coin flip? Save your result in a variable, and report it using a `cat()` statement.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+\subsubsection*{Part (c)}
+
+Next, the researchers estimate the number of subjects who wrote down a "Yes" because the first coin flip was a Tails, and the second coin flip was a Heads. Given the overall sample size of 840 subjects, what is the expected value of the number of subjects who wrote down a "Yes" because the first coin flip was a Tails, and the second coin flip was a Heads?
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (d)}
+
+Using the total number of "Yes" responses given in the problem statement and your answer from Part (c), estimate the number of subjects who answered "Yes" to the potentially embarrassing question.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+\subsubsection*{Part (e)}
+
+Given the overall sample size of 840 subjects, what is the expected number of subjects who observed a Heads on their first coin flip, and thus answered the potentially embarrassing question (either Yes or No)? Use this to estimate of the number of subjects who answered the potentially embarrassing question.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+\subsubsection*{Part (f)}
+
+You now have an estimate from Part (d) of the number of subjects who answered the potentially embarrassing question with "Yes", and from Part (e) of the total number of subjects who answered the potentially embarrassing question. Use these two values to estimate the proportion of the population that will give a "Yes" answer to the potentially embarrassing question.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\newpage
+
+End of Problem 5
+
+\newpage
+
+
+
+\section*{Problem 6}
+
+This is a continuation of the previous problem. Now we're going to implement a simulation to try out our new method in R. I'm going to break this down into 2 problems: in this problem, we'll see how to write all the code for a single iteration of the simulation, and in the next we'll put it all together in one big program.
+
+This is the most challenging coding problem that we've seen so far in this course. It's not particularly long, but it is complicated, and you have to be comfortable using loops and branching statements. We'll also have to use *nested* flow of control, which means for instance that your solution will have a ``for`` loop that contains another ``for`` loop, or an ``if`` statement that contains another ``if`` statement. If you don't get this in one week, that's OK, and you might want to treat this as a long-term project. Do your best!
+
+
+
+\subsection*{Problem Statement}
+
+\subsubsection*{Part (a)} 
+
+Define four variables:
+\begin{itemize}
+    \item The variable `sample.size` should hold the size of the experimental sample. Initialize this to 100.
+    \item The variable `number.of.replications` should hold the number of simulation replications. For this problem, start with the value 1,000, NOT 10,000.
+    \item The variable `probability.heads` should hold the value of the probability of flipping a fair coin and observing Heads.
+    \item The variable `probability.tails` should hold the value of the probability of flipping a fair coin and observing Tails.
+\end{itemize}
+
+
+
+\subsubsection*{Part (b)} 
+
+Now we will construct two variables that contain the probabilities that a randomly selected person will have an answer of "Yes" or "No" for the embarrassing question. 
+\begin{itemize}
+    \item Define the variable `embarrassing.question.yes.probability` and initialize it with the value 0.32.
+    \item Define the variable `embarrassing.question.no.probability` in terms of `embarrassing.question.yes.probability`. Remember that the answer to the potentially embarrassing question is either "Yes" or "No", so the two probabilities must add up to 1.
+\end{itemize}
+
+
+
+\subsubsection*{Part (c)}
+
+Recall the process by which a single person write down a final answer:
+\begin{itemize}
+    \item First, the person flips a fair coin.
+    \item If this initial coin flip was a Heads, then the person writes down the true response to the embarrassing question.
+    \item If the initial coin flip was a Tails, then the person flips the coin a second time:
+    \begin{itemize}
+        \item If the second coin flip is a Heads, then the person writes down the final answer "Yes", regardless of the true response.
+        \item If the second coin flip is a Tails, then the person write down the final answer "No", regardless of the true response.
+    \end{itemize}
+\end{itemize}
+
+In this part, we will model this process.
+\begin{itemize}
+    \item First, write code that simulates randomly flipping a fair code once, and store this random value in the variable `first.coin.flip`.
+    \item If the value of `first.coin.flip` is "Heads", then simulate the process of answering the embarrassing question by randomly sampling a final value of "Yes" or "No" depending on the specified probabilities from part (a). Store this true response in the variable `final.answer`.
+    \item On the other hand, if the value of `first.coin.flip` is "Tails", then simulate randomly flipping a fair coin a second time, and store this random value in the variable `second.coin.flip`.
+    \begin{itemize}
+        \item If the value of `second.coin.flip` is "Heads", then the value "Yes" is assigned to the variable `final.answer`.
+        \item If the value of `second.coin.flip` is "Tails", then the value "No" is assigned to the variable `final.answer`.
+    \end{itemize}
+    \item Report the value of `final.answer` using a `cat()` statement.
+\end{itemize}
+
+
+
+\subsubsection*{Part (d)}
+
+In part (c) we modeled the process by which a single person wrote down their final answer. Now we'll model the process of doing a study, where we repeat this process with a number of patients, and record the total number of "Yes" responses.
+\begin{itemize}
+    \item As in part (d), start your code chunk by running the code `set.seed(1)`.
+    \item Create a counter variable named `number.of.yes.responses`, and initialize to the value 0.
+    \item Construct a `for` loop, in which the loop variable `subject.index` ranges from 1 to the value of `sample.size`.
+    \item Use your code from part (d) to model the process of obtaining a final answer from a single subject.
+    \item If the value of `final.answer` is "Yes", update the counter variable `number.of.yes.responses`.
+\end{itemize}
+At the end of this process, you should have simulated the process of conducting an entire study where many subjects have gone through the process of writing down a final answer, and the variable `number.of.yes.responses` should contain the total number of "Yes" responses. Report the value of this variable using a `cat()` statement.
+
+
+
+
+
+\subsection*{Problem Solution}
+
+
+\subsubsection*{Part (a)} 
+
+Define four variables:
+\begin{itemize}
+    \item The variable `sample.size` should hold the size of the experimental sample. Initialize this to 100.
+    \item The variable `number.of.replications` should hold the number of simulation replications. For this problem, start with the value 1,000, NOT 10,000.
+    \item The variable `probability.heads` should hold the value of the probability of flipping a fair coin and observing Heads.
+    \item The variable `probability.tails` should hold the value of the probability of flipping a fair coin and observing Tails.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (b)} 
+
+Now we will construct two variables that contain the probabilities that a randomly selected person will have an answer of "Yes" or "No" for the embarrassing question. 
+\begin{itemize}
+    \item Define the variable `embarrassing.question.yes.probability` and initialize it with the value 0.32.
+    \item Define the variable `embarrassing.question.no.probability` in terms of `embarrassing.question.yes.probability`. Remember that the answer to the potentially embarrassing question is either "Yes" or "No", so the two probabilities must add up to 1.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (c)}
+
+Recall the process by which a single person write down a final answer:
+\begin{itemize}
+    \item First, the person flips a fair coin.
+    \item If this initial coin flip was a Heads, then the person writes down the true response to the embarrassing question.
+    \item If the initial coin flip was a Tails, then the person flips the coin a second time:
+    \begin{itemize}
+        \item If the second coin flip is a Heads, then the person writes down the final answer "Yes", regardless of the true response.
+        \item If the second coin flip is a Tails, then the person write down the final answer "No", regardless of the true response.
+    \end{itemize}
+\end{itemize}
+
+In this part, we will model this process.
+\begin{itemize}
+    \item First, write code that simulates randomly flipping a fair code once, and store this random value in the variable `first.coin.flip`.
+    \item If the value of `first.coin.flip` is "Heads", then simulate the process of answering the embarrassing question by randomly sampling a final value of "Yes" or "No" depending on the specified probabilities from part (a). Store this true response in the variable `final.answer`.
+    \item On the other hand, if the value of `first.coin.flip` is "Tails", then simulate randomly flipping a fair coin a second time, and store this random value in the variable `second.coin.flip`.
+    \begin{itemize}
+        \item If the value of `second.coin.flip` is "Heads", then the value "Yes" is assigned to the variable `final.answer`.
+        \item If the value of `second.coin.flip` is "Tails", then the value "No" is assigned to the variable `final.answer`.
+    \end{itemize}
+    \item Report the value of `final.answer` using a `cat()` statement.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+\subsubsection*{Part (d)}
+
+In part (c) we modeled the process by which a single person wrote down their final answer. Now we'll model the process of doing a study, where we repeat this process with a number of patients, and record the total number of "Yes" responses.
+\begin{itemize}
+    \item As in part (d), start your code chunk by running the code `set.seed(1)`.
+    \item Create a counter variable named `number.of.yes.responses`, and initialize to the value 0.
+    \item Construct a `for` loop, in which the loop variable `subject.index` ranges from 1 to the value of `sample.size`.
+    \item Use your code from part (d) to model the process of obtaining a final answer from a single subject.
+    \item If the value of `final.answer` is "Yes", update the counter variable `number.of.yes.responses`.
+\end{itemize}
+At the end of this process, you should have simulated the process of conducting an entire study where many subjects have gone through the process of writing down a final answer, and the variable `number.of.yes.responses` should contain the total number of "Yes" responses. Report the value of this variable using a `cat()` statement.
+
+
+
+
+
+\newpage
+
+End of Problem 6
+
+\newpage
+
+
+\subsubsection*{Problem 7}
+
+\subsection*{Problem Statement}
+
+Now we're going to create the final main simulation! Here, we'll run a main simulation, and in each replication of the experiment we'll use the code from Problem 6 to simulate running a study, and then the code from Problem 5 to estimate the true population proportion who answer "Yes" to the embarrassing question. 
+
+\begin{itemize}
+    \item First, create a vector called `outcome.vector` that will store the results of the main simulation. The length of this vector should be equal to the number of replications.
+    \item Construct a `for` loop with a loop variable called `replication.index`, ranging from 1 to the number of replications.
+    \item For each replication:
+    \begin{itemize}
+        \item First, simulate the process of conducting a single experiment, so that at the end the total number of simulated "Yes" responses is stored in a variable called `number.of.yes.responses`. (You are encouraged to copy, paste, and modify your code from Problem 6.)
+        \item Next, use `number.of.yes.responses` to estimate the true population proportion of "Yes" responses to the embarrassing question.
+        \item Finally, store the value of the estimated proportion in the `outcome.vector`.
+    \end{itemize}
+\end{itemize}
+At the end of this procedure, the vector `outcome.vector` should be populated with the estimated population proportion for each simulation replication.
+
+Finally, obtain the final estimate of the true population proportion by using the sample mean of `outcome.vector`. Report this value using a `cat()` statement.
+
+
+
+\subsection*{Problem Solution}
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+
+
+\newpage
+
+End of Problem 7
+
+\newpage
+
+
+
+\section*{Problem 8}
+
+This problem will demonstrate that mixture distributions do not preserve the distributional form of their components. That is, even if all the conditional mixture component distributions are members of the same family, the unconditional mixture distribution will not necessarily also be in that family. In this problem, we will study a simple example in which the unconditional mixture distribution of two binomial component distributions is not itself binomial.
+
+We will establish this result by a form of proof by contradiction:
+
+* First, we'll define a simple mixture distribution, consisting of two component distributions that are both binomial.
+
+* Our next step is to use the Law of Total Probability to calculate the unconditional probability of observing exactly one success. This should be a standard calculation for you by now, and we know that it has to be right.
+
+* Next, we'll calculate the unconditional probability of observing exactly 2 red balls in a sample of size 2, again using the Law of Total Probability.
+
+* Now we assume that the unconditional mixture distribution is binomial with unknown parameters $n$ and $p$. It's easy to determine $p$, and we calculate the value of $p$.
+
+* Next, we'll use this value of $p$ to calculate the probability of observing exactly one success, assuming that the unconditional mixture distribution really is binomial.
+
+* Finally, we'll see that the probability of observing one success that we calculated using the Law of Total Probability is different from the value that we calculated assuming the unconditional mixture distribution is binomial. Since there is a conflict, and we know the calculation we did in the step using the Law of Total Probability must be correct, this means that our assumption must be false, and the unconditional mixture probability cannot be a binomial distribution.
+
+\subsection*{Problem Statement}
+
+We will work with two ancient classical Greek urns, one containing 3 red balls and 7 white balls, and the other containing 8 red balls and 2 white balls. We flip a fair coin, and select the first urn if the coin is Heads, and the second urn if the coin is Tails. We then draw two balls with replacement, and the outcome of the experiment is the number of red balls observed.
+
+\subsubsection*{Part (a)}
+
+Define 4 variables:
+\begin{itemize}
+    \item The variable `urn.1.probability` should store the probability of selecting the first urn.
+    \item The variable `urn.2.probability` should store the probability of selecting the second urn.
+    \item The variable `urn.1.red.ball.probability` should store the conditional probability of observing a red ball in a single random draw, given that the first urn was selected.
+    \item The variable `urn.2.red.ball.probability` should store the conditional probability of observing a red ball in a single random draw, given that the first urn was selected.
+\end{itemize}
+
+\subsubsection*{Part (b)}
+
+Use the Law of Total Probability to calculate the probability of observing exactly one red ball from the two draws.
+
+
+\subsubsection*{Part (c)}
+
+Next, use the Law of Total Probability to calculate the probability of observing exactly two red balls from the two draws.
+
+
+\subsubsection*{Part (d)}
+
+All the component distributions take on only the values 0, 1, and 2, so therefore the unconditional mixture distribution must also take on only the values 0, 1, or 2. Assuming that the  mixture distribution is binomial, this would necessarily imply that the number of trials is $n = 2$. If $n = 2$, notice the simple form of the probability of observing two successes:
+\begin{eqnarray*}
+    \Pr( X = 2 ) & = & {2 \choose 2} \cdot p^2 \cdot (1-p)^{2-2}\\
+    \\
+    & = & 1 \cdot p^2 \cdot 1\\
+    \\
+    & = & p^2
+\end{eqnarray*}
+So, in the case where $n = 2$, the probability of observing two successes is equal to the square of the success probability:
+$$
+\Pr(X = 2)\ =\ p^2
+$$
+Therefore, the probability of success is equal to the square root of the probability of observing 2 successes. (Remember, all of this is assuming that the mixture distribution is binomial.)
+
+Assuming that the mixture distribution is binomial with parameter $n = 2$, use the probability of observing two red balls (which you calculated in the previous step) to determine the value of the parameter $p$.
+
+
+
+\subsubsection*{Part (e)}
+
+Using $n = 2$ and the value of $p$ that you have just calculated, calculate the value of observing exactly one ball, again assuming that the mixture distribution is binomial. How does this compare with the value that you calculated in the first step?
+
+
+\subsubsection*{Part (f)}
+
+What can you can conclude about the assumption that the mixture distribution is a binomial distribution?
+
+
+
+
+\subsection*{Problem Solution}
+
+\subsubsection*{Part (a)}
+
+Define 4 variables:
+\begin{itemize}
+    \item The variable `urn.1.probability` should store the probability of selecting the first urn.
+    \item The variable `urn.2.probability` should store the probability of selecting the second urn.
+    \item The variable `urn.1.red.ball.probability` should store the conditional probability of observing a red ball in a single random draw, given that the first urn was selected.
+    \item The variable `urn.2.red.ball.probability` should store the conditional probability of observing a red ball in a single random draw, given that the first urn was selected.
+\end{itemize}
+
+\bigskip
+\noindent
+{\bf Solution}
+
+
+
+
+
+\subsubsection*{Part (b)}
+
+Use the Law of Total Probability to calculate the probability of observing exactly one red ball from the two draws.
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+\subsubsection*{Part (c)}
+
+Next, use the Law of Total Probability to calculate the probability of observing exactly two red balls from the two draws.
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
+
+
+
+\subsubsection*{Part (d)}
+
+All the component distributions take on only the values 0, 1, and 2, so therefore the unconditional mixture distribution must also take on only the values 0, 1, or 2. Assuming that the  mixture distribution is binomial, this would necessarily imply that the number of trials is $n = 2$. If $n = 2$, notice the simple form of the probability of observing two successes:
+\begin{eqnarray*}
+    \Pr( X = 2 ) & = & {2 \choose 2} \cdot p^2 \cdot (1-p)^{2-2}\\
+    \\
+    & = & 1 \cdot p^2 \cdot 1\\
+    \\
+    & = & p^2
+\end{eqnarray*}
+So, in the case where $n = 2$, the probability of observing two successes is equal to the square of the success probability:
+$$
+\Pr(X = 2)\ =\ p^2
+$$
+Therefore, the probability of success is equal to the square root of the probability of observing 2 successes. (Remember, all of this is assuming that the mixture distribution is binomial.)
+
+Assuming that the mixture distribution is binomial with parameter $n = 2$, use the probability of observing two red balls (which you calculated in the previous step) to determine the value of the parameter $p$.
+
+\bigskip
+\noindent
+{\bf Solution} 
+
+
+
+
+
+
+
+\subsubsection*{Part (e)}
+
+Using $n = 2$ and the value of $p$ that you have just calculated, calculate the value of observing exactly one ball, again assuming that the mixture distribution is binomial. How does this compare with the value that you calculated in the first step?
+
+\bigskip
+\noindent
+{\bf Solution}
+
+
+
+
+
+\subsubsection*{Part (f)}
+
+What can you can conclude about the unconditional probability distribution? Could it be a binomial distribution?
+
+\bigskip
+\noindent
+{\bf Solution}\ 
+
+
